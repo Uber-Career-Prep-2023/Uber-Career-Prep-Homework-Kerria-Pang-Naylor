@@ -4,8 +4,8 @@ substring containing all the required characters.
 
 Method: Two pointer technique -- Variable-size (shrinking/growing) sliding window
 
-Time Complexity: O(n) (where n is the size of the array )
-Space Complexity: O(1)
+Time Complexity: O(n*m) (where n is the size s1 and m is size of s2 )
+Space Complexity: O(m)
 
 Time: 40 minutes
 """
