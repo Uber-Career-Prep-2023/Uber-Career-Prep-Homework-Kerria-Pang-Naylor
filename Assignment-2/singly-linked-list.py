@@ -1,5 +1,5 @@
 import pdb
-# in hindsight it might have been easier to do this in C++
+# in hindsight it might have been easier to do this in C++; memory is a bit unclear with python
 
 class Node:
     def __init__(self, data) -> None:
@@ -7,6 +7,8 @@ class Node:
         self.next = None # reference to next node
 
 # creates new Node with data val at front; returns new head
+# Space: O(1)
+# Time: O(1)
 def insertAtFront(head:Node, val:int) -> Node:
     newNode = Node(val)
     newNode.next = head
@@ -14,6 +16,8 @@ def insertAtFront(head:Node, val:int) -> Node:
 
 
 # creates new Node with data val at end
+# Space: O(1)
+# Time: O(n)
 def insertAtBack(head:Node, val:int) -> None:
     newNode = Node(val)
     
@@ -23,6 +27,8 @@ def insertAtBack(head:Node, val:int) -> None:
     ptrNode.next = newNode
 
 # creates new Node with data val after Node loc (otherwise appends to end)
+# Space: O(1)
+# Time: O(n)
 def insertAfter(head:Node, val:int, loc:Node) -> Node:
     newNode = Node(val)
 
@@ -35,10 +41,14 @@ def insertAfter(head:Node, val:int, loc:Node) -> Node:
     newNode.next = oldNext
 
 # removes first Node; returns new head
+# Space: O(1)
+# Time: O(1)
 def deleteFront(head:Node) -> Node:
     return head.next
 
 # removes last Node
+# Space: O(1)
+# Time: O(n)
 def deleteBack(head:Node) -> None:
     ptr = head
     ptr2 = head.next
@@ -49,6 +59,8 @@ def deleteBack(head:Node) -> None:
     ptr.next = None
 
 # returns length of list
+# Space: O(1)
+# Time: O(n)
 def length(head) -> int:
     if head:
         return 1 + length(head.next)
@@ -56,6 +68,8 @@ def length(head) -> int:
         return 0
 
 # reverses the linked list iteratively
+# Space: O(1)
+# Time: O(n)
 def reverseIterative(head:Node) -> Node:
     ptr = head
     ptr2 = head.next
@@ -70,6 +84,8 @@ def reverseIterative(head:Node) -> Node:
     return ptr
 
 # reverses the linked list recursively
+# Space: O(1)
+# Time: O(n)
 def reverseRecursive(head:Node) -> Node:
     if (head == None):
         return head

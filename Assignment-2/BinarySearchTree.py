@@ -6,9 +6,13 @@ class Node:
         self.left = left
 
 class BinarySearchTree(Node):
-    def __init__(self, startVal:int) -> None:
-        self.root = Node(startVal)
+    
+    def __init__(self) -> None:
+        self.root = None
+        pass
 
+    # Space: O(1)
+    # Time: O(log(n)) [worst case O(n)]
     def min(self) -> int: # returns the minimum value in the BST
         ptr = self.root
         while ptr and ptr.left:
@@ -17,7 +21,9 @@ class BinarySearchTree(Node):
             return ptr.val
         else:
             return -1
-    
+        
+    # Space: O(1)
+    # Time: O(log(n)) [worst case O(n)]
     def max(self) -> int: # returns the maximum value in the BST
         ptr = self.root
         while ptr and ptr.right:
@@ -28,6 +34,8 @@ class BinarySearchTree(Node):
             return -1
         
     # returns a boolean indicating whether val is present in the BST
+    # Space: O(1)
+    # Time: O(log(n)) [worst case O(n)]
     def contains(self, val:int) -> bool: 
         return self.containsHelper(self.root, val)
     
@@ -42,9 +50,11 @@ class BinarySearchTree(Node):
             return self.containsHelper(ptr.right, val)
     
     # creates a new Node with data val in the appropriate location
+    # Space: O(1)
+    # Time: O(log(n)) [worst case O(n)]
     def insert(self, val:int) -> None:
         if not self.contains(val):
-            self.insertHelper(self.root, val)
+            self.root = self.insertHelper(self.root, val)
     
     def insertHelper(self, ptr:Node, val:int) -> Node: 
         # Python does pass by reference for objects (I think, otherwise this has horrible space complexity. In hindsight I really should've done this in C+ :(.)
@@ -57,6 +67,8 @@ class BinarySearchTree(Node):
         return ptr
     
     # deletes the Node with data val, if it exists 
+    # Space: O(1)
+    # Time: O(log(n)) [worst case O(n)]
     def delete(self, val:int) -> None:
         if self.contains(val):
             self.deleteHelper(self.root, val)
@@ -97,7 +109,7 @@ class BinarySearchTree(Node):
     #     else:
     #         return -1
     
-    def recursiveMin(self, ptr:Node) -> int:
+    def recursiveMin(self, ptr:Node) -> int: # helper
         if ptr:
             if ptr.left:
                 return self.recursiveMin(ptr.left)
@@ -108,7 +120,8 @@ class BinarySearchTree(Node):
     
 
 if __name__ == "__main__":
-    bst = BinarySearchTree(5)
+    bst = BinarySearchTree()
+    bst.insert(5)
     print(bst.root.val)
     for num in [3,1,4,7,6,8]:
         bst.insert(num)

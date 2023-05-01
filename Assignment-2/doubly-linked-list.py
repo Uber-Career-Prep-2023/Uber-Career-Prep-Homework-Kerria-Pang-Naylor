@@ -7,6 +7,8 @@ class Node:
         self.prev = prev
 
 # creates new Node with data val at front; returns new head
+# Space: O(1)
+# Time: O(1)
 def insertAtFront(head:Node, val:int) -> Node:
     newNode = Node(val, next = head)
     newNode.next.prev = newNode
@@ -14,6 +16,8 @@ def insertAtFront(head:Node, val:int) -> Node:
 
 
 # creates new Node with data val at end
+# Space: O(1)
+# Time: O(n)
 def insertAtBack(head:Node, val:int) -> None:
     newNode = Node(val)
     
@@ -24,6 +28,8 @@ def insertAtBack(head:Node, val:int) -> None:
     newNode.prev = ptrNode
 
 # creates new Node with data val after Node loc (otherwise do nothing
+# Space: O(1)
+# Time: O(n)
 def insertAfter(head:Node, val:int, loc:Node) -> Node:
     newNode = Node(val)
 
@@ -38,11 +44,15 @@ def insertAfter(head:Node, val:int, loc:Node) -> Node:
         oldNext.prev = newNode
 
 # removes first Node; returns new head
+# Space: O(1)
+# Time: O(1)
 def deleteFront(head:Node) -> Node:
     head.next.prev = None
     return head.next
 
 # removes last Node
+# Space: O(1)
+# Time: O(n) (we weren't allowed to have a class for this implementation so there's no shortcut pointer to the back of the list)
 def deleteBack(head:Node) -> None:
     ptr = head
     ptr2 = head.next
@@ -53,6 +63,8 @@ def deleteBack(head:Node) -> None:
     ptr.next = None
 
 # returns length of list
+# Space: O(1)
+# Time: O(n)
 def length(head) -> int:
     if head:
         return 1 + length(head.next)
@@ -60,6 +72,8 @@ def length(head) -> int:
         return 0
 
 # reverses the linked list iteratively
+# Space: O(1)
+# Time: O(n)
 def reverseIterative(head:Node) -> Node:
     ptr = head
     ptr2 = head.next
@@ -75,6 +89,8 @@ def reverseIterative(head:Node) -> Node:
     return ptr
 
 # reverses the linked list recursively
+# Space: O(1)
+# Time: O(n)
 def reverseRecursive(head:Node) -> Node:
     if (head == None) or (head.next == None):
         return head
