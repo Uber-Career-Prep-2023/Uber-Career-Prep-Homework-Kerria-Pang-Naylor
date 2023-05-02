@@ -1,7 +1,7 @@
 # Strategy: Fixed-Distance two pointer
 # Time: 15 minutes
-# Space Complexity: O(n)
-# Time Complexity: O(1)
+# Space Complexity: O(1)
+# Time Complexity: O(n)
 
 from SinglyLinkedList import Node
 from SinglyLinkedList import makeList

@@ -97,17 +97,6 @@ class BinarySearchTree(Node):
                 ptr.right = self.deleteHelper(ptr.right, replace)
                 ptr.val = replace
         return ptr
-
-
-
-    # def recursiveMax(self, ptr:Node) -> int:
-    #     if ptr:
-    #         if ptr.right:
-    #             return self.recursiveMax(ptr.right)
-    #         else:
-    #             return ptr.val
-    #     else:
-    #         return -1
     
     def recursiveMin(self, ptr:Node) -> int: # helper
         if ptr:

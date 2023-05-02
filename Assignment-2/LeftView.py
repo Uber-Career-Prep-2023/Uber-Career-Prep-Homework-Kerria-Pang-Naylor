@@ -11,8 +11,6 @@ def leftView(rootNode):
     leftView = []
 
     def leftViewRecursive(node:Node, level:int, levels_visited) -> None: # accesses outside
-        #pdb.set_trace()
-
         """ 
         Update leftView list if level has been visited
         root = root node

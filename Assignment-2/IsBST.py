@@ -1,7 +1,7 @@
 # Strategy: pre-order search
 # Time: 10 minutes
-# Space Complexity: O(n)
-# Time Complexity: O(1)
+# Space Complexity: O(1)
+# Time Complexity: O(n)
 
 from BinarySearchTree import BinarySearchTree
 from BinarySearchTree import Node
