@@ -28,7 +28,7 @@ class BinarySearchTree(Node):
         if not self.root:
             return -1
         ptr = self.root
-        while ptr and ptr.right: #while ptr.left alone should suffice
+        while ptr and ptr.right: 
             ptr = ptr.right
         return ptr.val
         
@@ -55,7 +55,7 @@ class BinarySearchTree(Node):
         self.root = self.insertHelper(self.root, val)
     
     def insertHelper(self, ptr:Node, val:int) -> Node: 
-        # Python does pass by reference for objects (I think, otherwise this has horrible space complexity. In hindsight I really should've done this in C+ :(.)
+        # Python does pass by reference for objects 
         if ptr is None:
             return Node(val)
         elif val < ptr.val:

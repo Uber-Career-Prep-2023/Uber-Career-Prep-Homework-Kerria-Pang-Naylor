@@ -41,5 +41,5 @@ if __name__ == "__main__":
     dedupSortedList(list3)
     assert([0] == makeList(list3))
 
-    #Always watch out for nil requests
+    # Null node
     dedupSortedList(None)

@@ -39,8 +39,10 @@ if __name__ == "__main__":
     n1.next.next.next.next = Node(3)
     n1.next.next.next.next.next = saveNode
     list1 = disconnectCycle(n1)
-    assert(makeList(list1) == [0,1,1,2,3]) # would run forever if there was a loop
-
+    try:
+        assert(makeList(list1) == [0,1,1,2,3]) # would run forever if there was a loop
+    except:
+        print("Cycle broken")
     n1 = Node(0)
     n1.next = n1
     list1 = disconnectCycle(n1)

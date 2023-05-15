@@ -60,10 +60,6 @@ def deleteFront(head:Node) -> Node:
 # removes last Node
 # Space: O(1)
 # Time: O(n) (we weren't allowed to have a class for this implementation so there's no shortcut pointer to the back of the list)
-# can do this with only one pointer, since you can navigate backward and forward with only one pointer
-#confusing logic, incrementing both ptr and ptr1. Should increment only one and assign ptr = ptr2 or vice versa
-# bug head is only Node
-# Also do ptr2.prev = None to disconnect ptr2
 def deleteBack(head:Node) -> None:
     if not head:
         return None

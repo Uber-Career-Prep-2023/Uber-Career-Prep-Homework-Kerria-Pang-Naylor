@@ -41,7 +41,7 @@ if __name__ == "__main__":
     list3 = moveToFront(list3, 1)
     assert([0] == makeList(list3))
 
-    #Bug - edge case
+    # one node
     list4 = Node(0)
     list4 = moveToFront(list4, 0)
     assert([0] == makeList(list4))

@@ -250,8 +250,6 @@ def TestReverseRecursive():
     reversed = reverseRecursive(head3)
     assert(makeList(reversed) == [3,2,1,0])
 
-# for testing it's better to isolate and name each test
-# improves readability and troubleshooting
 if __name__ == "__main__":
     TestInsertFront()
     TestInsertBack()
