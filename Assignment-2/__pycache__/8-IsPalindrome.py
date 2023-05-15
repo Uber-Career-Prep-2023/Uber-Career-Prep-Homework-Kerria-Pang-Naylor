@@ -1,9 +1,9 @@
 # Strategy: Two pointer, forward backward
 # Time: 15 minutes
-# Space Complexity: O(n)
+# Space Complexity: O(1)
 # Time Complexity: O(n) (assume that we're only given first pointer)
 
-from DoublyLinkedList import *
+from DoublyLinkedList_2 import *
 import pdb
 
 def isPalindrome(startNode:Node):
@@ -24,7 +24,6 @@ def isPalindrome(startNode:Node):
         leftPtr = leftPtr.next
         rightPtr = rightPtr.prev
 
-      
     return True
 
 
@@ -47,3 +46,6 @@ if __name__ == "__main__":
     for val in [1,2,3,3,2,1,0]:
         insertAtBack(list2,val)
     assert(isPalindrome(list2))
+
+    list3 = Node(0)
+    assert(isPalindrome(list3))

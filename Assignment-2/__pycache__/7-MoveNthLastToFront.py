@@ -1,8 +1,8 @@
 # Strategy: Two pointer (variable length)
 # Time: 15 minutes
-# Space Complexity: O(n)
+# Space Complexity: O(1)
 # Time Complexity: O(n)
-from SinglyLinkedList import *
+from SinglyLinkedList_1 import *
 
 
 
@@ -13,8 +13,7 @@ def moveToFront(startNode:Node, k:int):
     if length_-k-1 < 0: # invalid, return same linked list
         return startNode
     
-    for i in range(length_-k-1):
-        print(ptr.data)
+    for i in range(length_-k-1): # use two pointers front and back that are k distance apart
         ptr = ptr.next
 
     new_front = ptr.next
@@ -38,4 +37,12 @@ if __name__ == "__main__":
     list2 = moveToFront(list2, 5)
     assert([0,1,2,3] == makeList(list2))
 
+    list3 = Node(0)
+    list3 = moveToFront(list3, 1)
+    assert([0] == makeList(list3))
+
+    #Bug - edge case
+    list4 = Node(0)
+    list4 = moveToFront(list4, 0)
+    assert([0] == makeList(list4))
 

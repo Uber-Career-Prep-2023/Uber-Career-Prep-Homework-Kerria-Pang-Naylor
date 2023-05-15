@@ -3,20 +3,24 @@
 # Space Complexity: O(1)
 # Time Complexity: O(n)
 
-from SinglyLinkedList import Node
-from SinglyLinkedList import makeList
-from SinglyLinkedList import insertAtBack
+from SinglyLinkedList_1 import Node, makeList, insertAtBack
+
 
 
 def dedupSortedList(startNode:Node):
+    if not startNode:
+        return None
+    
     left = startNode
     right = startNode.next
-    if right:
+    
+    if right:  # return startNode if right is None, cleaner
         while right.next:
             if left.data == right.data:
-                left.next = right.next # delete node
+                left.next = right.next # delete node 
+                right.next = None # free memory
             left = left.next
-            right = right.next
+            right = left.next
     return startNode
 
 
@@ -36,3 +40,6 @@ if __name__ == "__main__":
     list3 = Node(0)
     dedupSortedList(list3)
     assert([0] == makeList(list3))
+
+    #Always watch out for nil requests
+    dedupSortedList(None)

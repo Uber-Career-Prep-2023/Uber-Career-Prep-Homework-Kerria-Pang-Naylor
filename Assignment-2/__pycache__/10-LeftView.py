@@ -1,9 +1,9 @@
 # Strategy: pre-order search
 # Time: 30 minutes
-# Space Complexity: O(n)
+# Space Complexity: O(n) 
 # Time Complexity: O(n)
 
-from BinarySearchTree import *
+from BinarySearchTree_3 import *
 import pdb
 
 
@@ -17,7 +17,6 @@ def leftView(rootNode):
         level = distance from root
         """
         if node:
-            to_add = False
             if level > levels_visited:
                 leftView.append(node.val)
                 levels_visited += 1 

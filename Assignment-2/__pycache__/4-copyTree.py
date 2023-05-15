@@ -2,13 +2,14 @@
 # Time: 10 minutes
 # Space Complexity: O(n)
 # Time Complexity: O(n)
-from BinarySearchTree import Node
-from BinarySearchTree import BinarySearchTree
+from BinarySearchTree_3 import Node, BinarySearchTree
+
 import pdb
 
 def copyTree(bst):
     copyTree = BinarySearchTree()
 
+    #read more about passing by reference in python
     def addNode(root:Node): # weird gross python high global variable/higher order function property
         if root:
             copyTree.insert(root.val)
@@ -34,12 +35,16 @@ if __name__ == "__main__":
                 return equality_checker(bstNode.left, bstNodeCopy.left) and equality_checker(bstNode.right, bstNodeCopy.right)
             else:
                 return False
-            
+
+# Create functions for test as well
+
+    # 1 node
     bst = BinarySearchTree()
     bst.insert(4)
     bstcopy = copyTree(bst)
     assert(equality_checker(bst.root, bstcopy.root))
 
+    # balanced tree
     bst.insert(10)
     bst.insert(3)
     bst.insert(1)
@@ -47,6 +52,7 @@ if __name__ == "__main__":
     bstcopy2 = copyTree(bst)
     assert(equality_checker(bst.root, bstcopy2.root))
 
+    # stick
     stick = BinarySearchTree()
     stick.insert(1)
     stick.insert(2)

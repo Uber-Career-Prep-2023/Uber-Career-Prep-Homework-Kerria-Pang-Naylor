@@ -14,24 +14,23 @@ class BinarySearchTree(Node):
     # Space: O(1)
     # Time: O(log(n)) [worst case O(n)]
     def min(self) -> int: # returns the minimum value in the BST
-        ptr = self.root
-        while ptr and ptr.left:
-            ptr = ptr.left
-        if ptr:
-            return ptr.val
-        else:
+        if not self.root:
             return -1
+        ptr = self.root
+        while ptr.left:
+            ptr = ptr.left
+        return ptr.val
+
         
     # Space: O(1)
     # Time: O(log(n)) [worst case O(n)]
     def max(self) -> int: # returns the maximum value in the BST
-        ptr = self.root
-        while ptr and ptr.right:
-            ptr = ptr.right
-        if ptr:
-            return ptr.val
-        else:
+        if not self.root:
             return -1
+        ptr = self.root
+        while ptr and ptr.right: #while ptr.left alone should suffice
+            ptr = ptr.right
+        return ptr.val
         
     # returns a boolean indicating whether val is present in the BST
     # Space: O(1)
@@ -53,8 +52,7 @@ class BinarySearchTree(Node):
     # Space: O(1)
     # Time: O(log(n)) [worst case O(n)]
     def insert(self, val:int) -> None:
-        if not self.contains(val):
-            self.root = self.insertHelper(self.root, val)
+        self.root = self.insertHelper(self.root, val)
     
     def insertHelper(self, ptr:Node, val:int) -> Node: 
         # Python does pass by reference for objects (I think, otherwise this has horrible space complexity. In hindsight I really should've done this in C+ :(.)
@@ -62,7 +60,7 @@ class BinarySearchTree(Node):
             return Node(val)
         elif val < ptr.val:
             ptr.left = self.insertHelper(ptr.left, val)
-        else:
+        elif val > ptr.val:
             ptr.right = self.insertHelper(ptr.right, val)
         return ptr
     
@@ -70,8 +68,7 @@ class BinarySearchTree(Node):
     # Space: O(1)
     # Time: O(log(n)) [worst case O(n)]
     def delete(self, val:int) -> None:
-        if self.contains(val):
-            self.deleteHelper(self.root, val)
+        self.deleteHelper(self.root, val)
     
     def deleteHelper(self, ptr:Node, val:int):
         if ptr is None:
@@ -81,19 +78,14 @@ class BinarySearchTree(Node):
         elif val > ptr.val:
             ptr.right = self.deleteHelper(ptr.right, val)
         else:
-            # leaf -> just remove
             if ptr.right is None and ptr.left is None:
                 ptr = None
             elif ptr.left is None: 
                 ptr = ptr.right
-            
             elif ptr.right is None:    
                 ptr = ptr.left
-
             else:
-                # only right child or two children --> replace with min of right child
                 replace = self.recursiveMin(ptr.right)
-                print(replace)
                 ptr.right = self.deleteHelper(ptr.right, replace)
                 ptr.val = replace
         return ptr
@@ -106,23 +98,91 @@ class BinarySearchTree(Node):
                 return ptr.val
         else:
             return -1
-    
 
-if __name__ == "__main__":
+
+"""
+---------------------
+       TESTS
+---------------------
+"""
+
+def TestMinimum():
+    # empty tree
+    bst = BinarySearchTree()
+    assert(bst.min() == -1)
+
+    # 1 node tree
     bst = BinarySearchTree()
     bst.insert(5)
-    print(bst.root.val)
+    assert(bst.min() == 5)
+
+    # 7 node tree
     for num in [3,1,4,7,6,8]:
         bst.insert(num)
-    for num in [3,1,4,7,6,8]:
-        print(num, ":", bst.contains(num))
-    bst.delete(5)
-    assert(bst.root.val == 6)
-    bst.delete(8)
+    assert(bst.min() == 1)
 
+def TestMaximum():
+    # empty tree
+    bst = BinarySearchTree()
+    assert(bst.max() == -1)
+
+    # 1 node tree
+    bst = BinarySearchTree()
+    bst.insert(5)
+    assert(bst.max() == 5)
+
+    # 7 node tree
     for num in [3,1,4,7,6,8]:
-        print(num, ":", bst.contains(num))
+        bst.insert(num)
+    assert(bst.max() == 8)
+
+def TestContains():
+    # empty tree
+    bst = BinarySearchTree()
+    assert(bst.contains(1) == False)
+
+    # 1 node tree
+    bst = BinarySearchTree()
+    bst.insert(5)
+    assert(bst.contains(5))
+
+    # 7 node tree
+    for num in [3,1,4,7,6,8]:
+        bst.insert(num)
+    assert(bst.contains(5))
+    assert(bst.contains(3))
+    assert(bst.contains(1))
+    assert(bst.contains(4))
+    assert(bst.contains(7))
+    assert(bst.contains(6))
+    assert(bst.contains(8))
+
+def TestDelete():
+    # empty tree
+    bst = BinarySearchTree()
+    assert(bst.delete(1)== None)
+
+    # 1 node tree
+    bst = BinarySearchTree()
+    bst.insert(5)
+    assert(bst.delete(5) == None)
+
+    # 7 node tree
+    bst = BinarySearchTree()
+    for num in [3,1,4,7,6,8]:
+        bst.insert(num)
+    bst.delete(3)
+    assert(bst.contains(3) == False)
+    
+    bst.delete(5)
     assert(bst.contains(5) == False)
-    assert(bst.contains(8) == False)
+
+
+if __name__ == "__main__":
+    TestMinimum()
+    TestMaximum()
+    TestContains()
+    TestDelete()
+
    
 

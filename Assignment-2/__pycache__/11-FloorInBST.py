@@ -2,7 +2,7 @@
 # Time: 20 minutes
 # Space Complexity: O(1)
 # Time Complexity: O(logn) to O(n)
-from BinarySearchTree import *
+from BinarySearchTree_3 import *
 def floorInBST(root, val): # if no floor exists (i.e., all nodes are greater than val or tree is empty) return None
     if not root:
         return None
@@ -21,7 +21,7 @@ def floorInBST(root, val): # if no floor exists (i.e., all nodes are greater tha
 if __name__ == "__main__":
     # empty tree/tree w/o a floor
     root0 = None
-    assert(floorInBST(root0, 1) == False)
+    assert(floorInBST(root0, 1) == None)
 
     bst = BinarySearchTree()
     bst.insert(5)

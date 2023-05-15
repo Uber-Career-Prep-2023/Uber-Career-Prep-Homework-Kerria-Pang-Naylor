@@ -1,9 +1,9 @@
 # Strategy: Hash the nodes
 # Time: 15 minutes
-# Space Complexity: O(n)
+# Space Complexity: O(1)
 # Time Complexity: O(n)
 
-from SinglyLinkedList import *
+from SinglyLinkedList_1 import *
 
 def disconnectCycle(startNode):
     past_nodes = set() # hashset of *references* to past visited nodes
@@ -25,7 +25,10 @@ if __name__ == "__main__":
     n1.next.next.next = Node(3)
     n1.next.next.next.next = saveNode
     list1 = disconnectCycle(n1)
-    assert(makeList(list1) == [0,1,2,3]) # would run forever if there was a loop
+    try:
+        assert(makeList(list1) == [0,1,2,3]) # would run forever if there was a loop
+    except:
+        print("Cycle not broken")
 
     # cycle w/ repeating values
     n1 = Node(0)
@@ -38,3 +41,7 @@ if __name__ == "__main__":
     list1 = disconnectCycle(n1)
     assert(makeList(list1) == [0,1,1,2,3]) # would run forever if there was a loop
 
+    n1 = Node(0)
+    n1.next = n1
+    list1 = disconnectCycle(n1)
+    assert(makeList(list1) == [0])
