@@ -113,8 +113,4 @@ def testAll():
     a.delete()
     assert(a.returnArr() == [])
 
-
-
-
-
 testAll()
