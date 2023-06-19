@@ -9,12 +9,13 @@ node of the graph stores an integer rather than a generic data type and that the
 distinct. Implement a basic DFS and BFS searching for a target value and a topological sort (using 
 either DFS or Kahn’s algorithm).
 """
+
 from collections import defaultdict
 from collections import deque
 import pdb
 
 # adjacencySet
-# Time Complexity : O(n)
+# Time Complexity : O(n) (n is number of pairs entered)
 # Space Complexity : O(n)
 def adjacencySet(pairs:list) -> dict:
     adj_list = defaultdict(lambda: set()) # if key doesn't exist, will make key
@@ -27,8 +28,8 @@ def adjacencySet(pairs:list) -> dict:
 
 
 # BFS
-# Time Complexity : O(n) (since I keep track of formerly visited nodes)
-# Space Complexity : O(n)
+# Time Complexity : O(V+E) (vertices + edges)
+# Space Complexity : O(V) (vertices)
 # NOTE: I am accounting for the case where we might have a disconnected digraph and/or dead ends,
 # so this is a bit more complicated than the classic undirected, connected graph bfs
 def bfs(target:int, graph:dict) -> bool:
@@ -57,8 +58,8 @@ def bfs(target:int, graph:dict) -> bool:
 
 
 # DFS with iterative (stack-based) helper
-# Time Complexity : O(n^2) for version without start given, O(n) when start node is given
-# Space Complexity : O(1)
+# Time Complexity : O(V+E) (vertices + edges)
+# Space Complexity : O(V) (vertices)
 def dfs(target, graph:dict) -> bool:
     visited = set() # set of visited nodes (integers)
 
@@ -93,8 +94,8 @@ def dfs_rec(target, graph:dict, start_node, visited:set = set()) -> bool:
 
 
 # Topological Sort -- DFS Algorithm
-# Time Complexity : O(n)
-# Space Complexity : O(n)
+# Time Complexity : O(V+E) (vertices + edges)
+# Space Complexity : O(V) (vertices)
 def topologicalSort(graph:dict) -> list:
     
     visited = [False]*len(graph) # set of visited nodes (integers), could also use list
@@ -120,8 +121,8 @@ def topologicalSort(graph:dict) -> list:
 
 
 # Topological Sort -- Kahn's algorithm
-# Time Complexity : O(n) (vertices + edges)
-# Space Complexity : O(1)
+# Time Complexity : O(V+E) (vertices + edges)
+# Space Complexity : O(V) (vertices)
 def topologicalSort_Kahn(graph:dict) -> list:
     sorted = deque()
     # initialize in-degree tracker array
