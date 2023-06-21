@@ -6,9 +6,11 @@ Given a number, k, return an array of the first k binary numbers, represented as
 # Time Complexity: O(n) -- only doing full computation for each number once because of memoization
 # Space Complexity: O(n) -- due to memoization
 # Time: 20 minutes
+
 def decToBin(n, memo): # recursive helper, converts decimal to binary string
     if n == 0: return ""
     if n in memo: return memo[n]
+    
     elif n%2 == 0:
         soln = decToBin(n/2, memo)+"0"
         memo[n] = soln
