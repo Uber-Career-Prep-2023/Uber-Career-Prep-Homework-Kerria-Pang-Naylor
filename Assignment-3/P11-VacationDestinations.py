@@ -21,10 +21,11 @@ def vacationDestinations(origin, k, edges):
         neighbors[end].append((start,weight))
     cities = []
     ncities = 0
-    # perform BFS
+
+    # perform BFS and keep track of time "distance"
     visited = set()
     q = deque()
-    q.appendleft((origin, -1)) # queue stores city and distance from origin
+    q.appendleft((origin, -1)) # queue stores city and distance from origin, origin is -1 because no wait time for start location
     visited.add(origin)
     while q:
         city, distance = q.pop()
@@ -33,9 +34,9 @@ def vacationDestinations(origin, k, edges):
             cities.append(city)
             for ncity, ndistance in neighbors[city]:
                 if ncity not in visited: 
-                    q.appendleft((ncity, ndistance +1+ distance))
+                    q.appendleft((ncity, ndistance +1+ distance)) # append (cityname, new distance + 1 (wait time))
                     visited.add(ncity)
-        elif distance == k:
+        elif distance == k: # if reached maximum time, append city and no more search
             ncities += 1
             cities.append(city)
         else:

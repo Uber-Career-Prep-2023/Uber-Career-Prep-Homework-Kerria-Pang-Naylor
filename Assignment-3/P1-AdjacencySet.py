@@ -88,7 +88,8 @@ def dfs_rec(target, graph:dict, start_node, visited:set = set()) -> bool:
     visited.add(start_node)
 
     for neighbor in graph[start_node]: # go through neigbors
-        dfs_rec(target, graph, neighbor, visited)
+        if neighbor not in visited:
+            dfs_rec(target, graph, neighbor, visited)
 
 
 
